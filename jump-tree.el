@@ -613,17 +613,17 @@ The following keys are available in `jump-tree-mode':
   \\{jump-tree-map}
 Within the jump-tree visualizer, the following keys are available:
   \\{jump-tree-visualizer-mode-map}"
-  nil                       ; init value
-  jump-tree-mode-lighter    ; lighter
-  jump-tree-map             ; keymap
-  (if jump-tree-mode
-      (progn
-        (add-hook 'pre-command-hook  'jump-tree-pos-list-pre-command)
-        (add-hook 'post-command-hook 'jump-tree-pos-list-post-command))
-    (remove-hook 'pre-command-hook  'jump-tree-pos-list-pre-command)
-    (remove-hook 'post-command-hook 'jump-tree-pos-list-post-command)
-    (setq jump-tree-pos-list nil)
-    (setq jump-tree-pos-tree nil)))
+  :name "Jump Tree" ; The string for the lighter prefix
+  :init-value nil
+  :key-map jump-tree-map
+  :on-enable (lambda ()
+               (add-hook 'pre-command-hook  'jump-tree-pos-list-pre-command)
+               (add-hook 'post-command-hook 'jump-tree-pos-list-post-command))
+  :on-disable (lambda ()
+                (remove-hook 'pre-command-hook  'jump-tree-pos-list-pre-command)
+                (remove-hook 'post-command-hook 'jump-tree-pos-list-post-command)
+                (setq jump-tree-pos-list nil)
+                (setq jump-tree-pos-tree nil)))
 
 (defun turn-on-jump-tree-mode ()
   "Enable command `jump-tree-mode' in the current buffer.
