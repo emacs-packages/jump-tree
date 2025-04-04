@@ -537,7 +537,7 @@ these nodes."
           ;; make child of root into new root
           (setq node (setf (jump-tree-root jump-tree-pos-tree)
                            (car (jump-tree-node-next node))))
-          (decf (jump-tree-count jump-tree-pos-tree))
+          (cl-decf (jump-tree-count jump-tree-pos-tree))
           ;; discard new root's position data and PREVIOUS link
           (setf (jump-tree-node-position node) nil
                 (jump-tree-node-previous node) nil)
@@ -557,7 +557,7 @@ these nodes."
         (let ((pos (jump-tree-node-register node)))
           (when (and pos (eq (get-register pos) node))
             (set-register pos nil)))
-        (decf (jump-tree-count jump-tree-pos-tree))
+        (cl-decf (jump-tree-count jump-tree-pos-tree))
         ;; discard leaf
         (setf (jump-tree-node-next parent)
               (delq node (jump-tree-node-next parent))
