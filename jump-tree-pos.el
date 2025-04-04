@@ -433,7 +433,7 @@ This function will remove these invalid entries."
 
   ;; `jump-tree-pos-list-transfer-to-tree' should never be called when jump is disabled
   ;; (i.e. `jump-tree-pos-tree' is t)
-  (assert (not (eq jump-tree-pos-tree t)))
+  (cl-assert (not (eq jump-tree-pos-tree t)))
 
   ;; if `jump-tree-pos-tree' is empty, create initial jump-tree
   (when (null jump-tree-pos-tree) (setq jump-tree-pos-tree (make-jump-tree)))
