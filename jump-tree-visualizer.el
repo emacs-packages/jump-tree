@@ -369,23 +369,23 @@ widths need calculating before NODE's can be calculated."
         ;; compute left-width
         (dotimes (i (/ num-children 2))
           (if (jump-tree-node-lwidth (car p))
-              (incf lwidth (+ (jump-tree-node-lwidth (car p))
+              (cl-incf lwidth (+ (jump-tree-node-lwidth (car p))
                               (jump-tree-node-cwidth (car p))
                               (jump-tree-node-rwidth (car p))))
             ;; if child's widths haven't been computed, return that child
             (throw 'need-widths (car p)))
           (setq p (cdr p)))
         (if (jump-tree-node-lwidth (car p))
-            (incf lwidth (jump-tree-node-lwidth (car p)))
+            (cl-incf lwidth (jump-tree-node-lwidth (car p)))
           (throw 'need-widths (car p)))
         ;; centre-width is inherited from middle child
         (setf cwidth (jump-tree-node-cwidth (car p)))
         ;; compute right-width
-        (incf rwidth (jump-tree-node-rwidth (car p)))
+        (cl-incf rwidth (jump-tree-node-rwidth (car p)))
         (setq p (cdr p))
         (dotimes (i (/ num-children 2))
           (if (jump-tree-node-lwidth (car p))
-              (incf rwidth (+ (jump-tree-node-lwidth (car p))
+              (cl-incf rwidth (+ (jump-tree-node-lwidth (car p))
                               (jump-tree-node-cwidth (car p))
                               (jump-tree-node-rwidth (car p))))
             (throw 'need-widths (car p)))
@@ -397,7 +397,7 @@ widths need calculating before NODE's can be calculated."
         ;; compute left-width
         (dotimes (i (/ num-children 2))
           (if (jump-tree-node-lwidth (car p))
-              (incf lwidth (+ (jump-tree-node-lwidth (car p))
+              (cl-incf lwidth (+ (jump-tree-node-lwidth (car p))
                               (jump-tree-node-cwidth (car p))
                               (jump-tree-node-rwidth (car p))))
             (throw 'need-widths (car p)))
@@ -407,7 +407,7 @@ widths need calculating before NODE's can be calculated."
         ;; compute right-width
         (dotimes (i (/ num-children 2))
           (if (jump-tree-node-lwidth (car p))
-              (incf rwidth (+ (jump-tree-node-lwidth (car p))
+              (cl-incf rwidth (+ (jump-tree-node-lwidth (car p))
                               (jump-tree-node-cwidth (car p))
                               (jump-tree-node-rwidth (car p))))
             (throw 'need-widths (car p)))

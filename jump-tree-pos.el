@@ -368,7 +368,7 @@ that are already part of `jump-tree-pos-tree'."
        ;; if active branch didn't go via NODE, update parent's branch to point
        ;; to same node as before
        ((> (jump-tree-node-branch parent) index)
-        (incf (jump-tree-node-branch parent)
+        (cl-incf (jump-tree-node-branch parent)
               (1- (length (jump-tree-node-next node))))))
       ;; replace NODE in parent's next list with NODE's entire next list
       (if (= index 0)
@@ -398,7 +398,7 @@ Comparison is done with `eq'."
     (catch 'found
       (while (progn
                (when (eq node (car list)) (throw 'found i))
-               (incf i)
+               (cl-incf i)
                (setq list (cdr list))))
       0)))
 
@@ -455,12 +455,12 @@ This function will remove these invalid entries."
         (while jump-tree-pos-list
           (setq node
                 (jump-tree-grow-backwards node (pop jump-tree-pos-list)))
-          (incf count))
+          (cl-incf count))
         ;; build a new branch, number 0.
         (setf (jump-tree-node-previous node) splice)
         (push node (jump-tree-node-next splice))
         (setf (jump-tree-node-branch splice) 0)
-        (incf (jump-tree-count jump-tree-pos-tree) count)))
+        (cl-incf (jump-tree-count jump-tree-pos-tree) count)))
     ;; discard position history if necessary
     (jump-tree-discard-history)))
 
